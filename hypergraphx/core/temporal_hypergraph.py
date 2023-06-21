@@ -1,4 +1,4 @@
-from hypergraphx import Hypergraph
+from hypergraphx.core.hypergraph import Hypergraph
 from hypergraphx.core.meta_handler import MetaHandler
 
 

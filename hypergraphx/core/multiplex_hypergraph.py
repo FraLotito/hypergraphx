@@ -1,4 +1,4 @@
-from hypergraphx import Hypergraph
+from hypergraphx.core.hypergraph import Hypergraph
 from hypergraphx.core.meta_handler import MetaHandler
 
 
@@ -10,6 +10,7 @@ class MultiplexHypergraph:
 
     def add_layer(self, layer_name, hypergraph: Hypergraph, attr=None):
         self.layers[layer_name] = hypergraph
+        self.__attr.add_obj(layer_name, obj_type='layer')
         self.__attr.set_attr(layer_name, attr)
 
     def get_layer(self, layer_name):
@@ -58,14 +59,14 @@ class MultiplexHypergraph:
     def aggregated_hypergraph(self):
         h = Hypergraph()
         for layer in self.layers.values():
-            h.add_edges(layer._edge_list.keys())
+            h.add_edges(layer.get_edges())
         return h
 
     def edge_overlap(self, edge):
         edge = tuple(sorted(edge))
         overlap = 0
         for layer in self.layers.values():
-            if edge in layer._edge_list:
+            if edge in layer.get_edges():
                 overlap += layer.get_weight(edge)
         return overlap
 

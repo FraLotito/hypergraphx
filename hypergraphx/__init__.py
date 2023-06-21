@@ -1,1 +1,1 @@
-from hypergraphx.core import Hypergraph
+from hypergraphx.core import Hypergraph, MultiplexHypergraph, TemporalHypergraph
